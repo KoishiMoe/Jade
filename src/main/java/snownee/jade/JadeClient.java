@@ -157,24 +157,24 @@ public final class JadeClient implements ClientModInitializer {
 
 	@Nullable
 	public static Accessor<?> builtInOverrides(HitResult hitResult, @Nullable Accessor<?> accessor, @Nullable Accessor<?> originalAccessor) {
-		if (accessor instanceof BlockAccessor target) {
-			Player player = accessor.getPlayer();
-			if (player.isCreative() || player.isSpectator())
-				return accessor;
-			IWailaClientRegistration client = VanillaPlugin.CLIENT_REGISTRATION;
-			if (target.getBlock() instanceof TrappedChestBlock) {
-				BlockState state = VanillaPlugin.getCorrespondingNormalChest(target.getBlockState());
-				if (state != target.getBlockState()) {
-					return client.blockAccessor().from(target).blockState(state).build();
-				}
-			} else if (target.getBlock() instanceof InfestedBlock) {
-				Block block = ((InfestedBlock) target.getBlock()).getHostBlock();
-				return client.blockAccessor().from(target).blockState(block.defaultBlockState()).build();
-			} else if (target.getBlock() == Blocks.POWDER_SNOW) {
-				Block block = Blocks.SNOW_BLOCK;
-				return client.blockAccessor().from(target).blockState(block.defaultBlockState()).build();
-			}
-		}
+//		if (accessor instanceof BlockAccessor target) {
+//			Player player = accessor.getPlayer();
+//			if (player.isCreative() || player.isSpectator())
+//				return accessor;
+//			IWailaClientRegistration client = VanillaPlugin.CLIENT_REGISTRATION;
+//			if (target.getBlock() instanceof TrappedChestBlock) {
+//				BlockState state = VanillaPlugin.getCorrespondingNormalChest(target.getBlockState());
+//				if (state != target.getBlockState()) {
+//					return client.blockAccessor().from(target).blockState(state).build();
+//				}
+//			} else if (target.getBlock() instanceof InfestedBlock) {
+//				Block block = ((InfestedBlock) target.getBlock()).getHostBlock();
+//				return client.blockAccessor().from(target).blockState(block.defaultBlockState()).build();
+//			} else if (target.getBlock() == Blocks.POWDER_SNOW) {
+//				Block block = Blocks.SNOW_BLOCK;
+//				return client.blockAccessor().from(target).blockState(block.defaultBlockState()).build();
+//			}
+//		}
 		return accessor;
 	}
 
