@@ -195,33 +195,33 @@ public final class JadeClient {
 	@Nullable
 	public static Accessor<?> builtInOverrides(
 			HitResult hitResult, @Nullable Accessor<?> accessor, @Nullable Accessor<?> originalAccessor) {
-		if (WailaClientRegistration.instance().maybeLowVisionUser() || !IWailaConfig.get().getGeneral().getBuiltinCamouflage()) {
-			return accessor;
-		}
-		if (accessor instanceof BlockAccessor target) {
-			Player player = accessor.getPlayer();
-			if (player.isCreative() || player.isSpectator()) {
-				return accessor;
-			}
-			IWailaClientRegistration client = VanillaPlugin.CLIENT_REGISTRATION;
-			if (target.getBlock() instanceof TrappedChestBlock) {
-				BlockState state = VanillaPlugin.getCorrespondingNormalChest(target.getBlockState());
-				if (state != target.getBlockState()) {
-					return client.blockAccessor().from(target).blockState(state).build();
-				}
-			}
-			BlockAccessor.Builder builder = client.blockAccessor().from(target).blockEntity(() -> null);
-			if (target.getBlock() instanceof InfestedBlock) {
-				Block block = ((InfestedBlock) target.getBlock()).getHostBlock();
-				return builder.blockState(block.defaultBlockState()).build();
-			} else if (target.getBlock() == Blocks.POWDER_SNOW) {
-				Block block = Blocks.SNOW_BLOCK;
-				return builder.blockState(block.defaultBlockState()).build();
-			} else if (target.getBlock() instanceof BrushableBlock brushable) {
-				Block block = brushable.getTurnsInto();
-				return builder.blockState(block.defaultBlockState()).build();
-			}
-		}
+		// if (WailaClientRegistration.instance().maybeLowVisionUser() || !IWailaConfig.get().getGeneral().getBuiltinCamouflage()) {
+		// 	return accessor;
+		// }
+		// if (accessor instanceof BlockAccessor target) {
+		// 	Player player = accessor.getPlayer();
+		// 	if (player.isCreative() || player.isSpectator()) {
+		// 		return accessor;
+		// 	}
+		// 	IWailaClientRegistration client = VanillaPlugin.CLIENT_REGISTRATION;
+		// 	if (target.getBlock() instanceof TrappedChestBlock) {
+		// 		BlockState state = VanillaPlugin.getCorrespondingNormalChest(target.getBlockState());
+		// 		if (state != target.getBlockState()) {
+		// 			return client.blockAccessor().from(target).blockState(state).build();
+		// 		}
+		// 	}
+		// 	BlockAccessor.Builder builder = client.blockAccessor().from(target).blockEntity(() -> null);
+		// 	if (target.getBlock() instanceof InfestedBlock) {
+		// 		Block block = ((InfestedBlock) target.getBlock()).getHostBlock();
+		// 		return builder.blockState(block.defaultBlockState()).build();
+		// 	} else if (target.getBlock() == Blocks.POWDER_SNOW) {
+		// 		Block block = Blocks.SNOW_BLOCK;
+		// 		return builder.blockState(block.defaultBlockState()).build();
+		// 	} else if (target.getBlock() instanceof BrushableBlock brushable) {
+		// 		Block block = brushable.getTurnsInto();
+		// 		return builder.blockState(block.defaultBlockState()).build();
+		// 	}
+		// }
 		return accessor;
 	}
 
